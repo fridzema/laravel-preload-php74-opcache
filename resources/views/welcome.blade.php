@@ -25,8 +25,8 @@
             }
 
             .flex-center {
-                align-items: center;
                 display: flex;
+                align-items: center;
                 justify-content: center;
             }
 
@@ -61,7 +61,16 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .portfolio {
+                margin-top: 1vh;
+                width: 100%;
+                min-height: 500px;
+                background: #ccc;
+            }
         </style>
+        <link href="{{asset('css/prism.css')}}" rel="stylesheet">
+
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -80,21 +89,106 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="title m-b-md" id="typewriter">
+                    Robert Fridzema
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://github.com/fridzema">Github</a>
+                    <a href="https://stackoverflow.com/users/1811518/robert-fridzema">Stackoverflow</a>
+                    <a href="https://www.linkedin.com/in/fridzema">Linkedin</a>
+                    <a href="https://twitter.com/fridzema">Twitter</a>
+                    <a href="https://instagram.com/fridzema">Instagram</a>
                 </div>
             </div>
         </div>
+        <div class="portfolio">
+            <pre><code class="language-json">
+              {
+                "Country": "Netherlands",
+                "City": "Rotterdam",
+                "Languages": "Dutch/English",
+                "Social": {
+                    "Github": {
+                        "description": "",
+                        "url": "https://github.com/fridzema",
+                        "followers": null,
+                        "following": null,
+                        "commits": null,
+                        "pull_requests": null,
+                        "repositories": null
+                    },
+                    "Stackoverflow": {
+                        "description": ""
+                    },
+                    "Linkedin": {
+                        "description": ""
+                    },
+                    "Twitter": {
+                        "description": ""
+                    },
+                    "Instagram": {
+                        "description": ""
+                    }
+                },
+                "string": "Hello World"
+            }
+                
+</code></pre>
+
+
+
+
+
+    <div>terminal questions</div>
+        </div>
+
+
+        <script src="{{asset('js/prism.js')}}"></script>
+        <script>
+        	document.addEventListener('DOMContentLoaded',function(event){
+  // array with texts to type in typewriter
+  var dataText = [ "Robert Fridzema", "Rotterdam.", "Development", "Photography"];
+  
+  // type one text in the typwriter
+  // keeps calling itself until the text is finished
+  function typeWriter(text, i, fnCallback) {
+    // chekc if text isn't finished yet
+    if (i < (text.length)) {
+      // add next character to h1
+     document.getElementById("typewriter").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+
+      // wait for a while and call this function again for next character
+      setTimeout(function() {
+        typeWriter(text, i + 1, fnCallback)
+      }, 100);
+    }
+    // text finished, call callback if there is a callback function
+    else if (typeof fnCallback == 'function') {
+      // call callback after timeout
+      setTimeout(fnCallback, 700);
+    }
+  }
+  // start a typewriter animation for a text in the dataText array
+   function StartTextAnimation(i) {
+     if (typeof dataText[i] == 'undefined'){
+        setTimeout(function() {
+          StartTextAnimation(0);
+        }, 20000);
+     }
+     // check if dataText[i] exists
+    if (i < dataText[i].length) {
+      // text exists! start typewriter animation
+     typeWriter(dataText[i], 0, function(){
+       // after callback (and whole text has been animated), start next text
+       StartTextAnimation(i + 1);
+     });
+    }
+  }
+  // start the text animation
+  StartTextAnimation(0);
+});
+            
+            </script>
     </body>
 </html>
