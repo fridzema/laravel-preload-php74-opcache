@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'frontend', 'namespace' => 'Frontend'], function() {
+    Route::get('/', 'IndexController@index')->name('home');    
 });
+
+Auth::routes(['verify' => true]);
+
+Route::group(['middleware' => 'backend', 'namespace' => 'Backend'], function() {
+    Route::get('/home', 'IndexController@index')->name('home');
+});
+
